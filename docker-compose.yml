@@ -1,0 +1,45 @@
+version: "3"
+
+services:
+  db_postgres_ng_cash:
+    image: postgres
+    container_name: db_postgres_ng_cash
+    restart: always
+    ports:
+      - 5005:5432
+    env_file:
+      - ./ng-finance-back/.env
+    volumes:
+      - pg_ng_cash:/var/lib/postgresql/data
+
+  node_app_ng_cash:
+    container_name: node_app_ng_cash
+    build: ./ng-finance-back
+    ports:
+      - 5000:5000
+    depends_on:
+      - db_postgres_ng_cash
+    env_file:
+      - ./ng-finance-back/.env
+
+  app_react:
+    build: ./ng-finance-front
+    container_name: app_react
+    volumes:
+      - build_react:/var/www/html
+
+  nginx:
+    build: ./nginx
+    container_name: nginx
+    ports:
+      - 80:80
+    volumes:
+      - build_react:/var/www/html
+    depends_on:
+      - db_postgres_ng_cash
+      - node_app_ng_cash
+      - app_react
+
+volumes:
+  pg_ng_cash:
+  build_react:
