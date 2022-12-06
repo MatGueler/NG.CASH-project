@@ -30,7 +30,7 @@ export async function registerUser(body: IRegister) {
 
 export async function loginUser(body: ILogin) {
   try {
-    await prisma.$transaction(async (db) => {
+    return await prisma.$transaction(async (db) => {
       const user = await verifyUserNameExist(db, body.username);
       await compareEncryptedPassword(body.password, user.password);
       const token = generateToken(user.id);

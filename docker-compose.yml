@@ -22,24 +22,24 @@ services:
     env_file:
       - ./ng-finance-back/.env
 
-  app_react:
-    build: ./ng-finance-front
-    container_name: app_react
-    volumes:
-      - build_react:/var/www/html
+  # app_react:
+  #   build: ./ng-finance-front
+  #   container_name: app_react
+  #   volumes:
+  #     - build_react:/var/www/html
 
-  nginx:
-    build: ./nginx
-    container_name: nginx
-    ports:
-      - 80:80
-    volumes:
-      - build_react:/var/www/html
-    depends_on:
-      - db_postgres_ng_cash
-      - node_app_ng_cash
-      - app_react
+  # nginx:
+  #   build: ./nginx
+  #   container_name: nginx
+  #   ports:
+  #     - 80:80
+  #   volumes:
+  #     - build_react:/var/www/html
+  #   depends_on:
+  #     - db_postgres_ng_cash
+  #     - node_app_ng_cash
+  #     - app_react
 
 volumes:
   pg_ng_cash:
-  build_react:
+  # build_react:
