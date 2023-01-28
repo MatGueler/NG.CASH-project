@@ -80,3 +80,6 @@ Para inicializar a aplicação no front utilize o comando abaixo para abrir o se
 ```
 npm run start
 ```
+
+[REPOSITÓRIO FRONT-END](https://github.com/MatGueler/NG.CASH-front)
+[REPOSITÓRIO BACK-END](https://github.com/MatGueler/NG.CASH-back)
